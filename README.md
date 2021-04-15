@@ -3,7 +3,7 @@ Farmer Fred is in trouble! For the last five years, he has been getting less and
 barley making ends meet. He thinks it’s because his soil quality is rapidly declining but why?
 
 Perhaps you can help him find out! We’re sending you his fields and crops plan, but we are missing a critical piece of 
-information - the humus balance. Humus balance is a great metric of general soil health. 
+information - the humus balance. Humus balance is a great metric of general soil health - the more humus the better! 
 
 Please implement the humus balance calculator so Mr. Fred could start fixing his soil for the future.
 
