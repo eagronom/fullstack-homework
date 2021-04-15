@@ -1,0 +1,131 @@
+/**
+ * Overrides react select v2 https://react-select.com
+ */
+
+.react-select {
+  .react-select__control {
+    min-height: 36px;
+    border: $input-border;
+    cursor: pointer;
+
+    &:hover,
+    &.react-select__control--is-focused,
+    &.react-select__control--menu-is-open {
+      border-color: $green;
+
+      .react-select__dropdown-indicator::before {
+        color: $green;
+      }
+    }
+  }
+
+  .react-select__control--is-focused,
+  .react-select__control--menu-is-open {
+    box-shadow: 0 0 0 2px rgba($light-green, .5);
+  }
+
+  .react-select__control--is-disabled {
+    background: $grey-1;
+  }
+
+  .react-select__control--is-disabled .react-select__single-value {
+    color: $dark;
+  }
+
+  .react-select__value-container {
+    padding: 2px 7px;
+  }
+
+  .react-select__placeholder {
+    margin-right: 0;
+    margin-left: 0;
+    color: $grey-4;
+  }
+
+  .react-select__clear-indicator,
+  .react-select__indicator-separator {
+    display: none;
+  }
+
+  .react-select__dropdown-indicator {
+    align-items: center;
+    padding: 0 2px 0 0;
+    visibility: hidden;
+
+    &::before {
+      content: 'keyboard_arrow_down';
+
+      position: absolute;
+
+      font-family:'Material Icons Outlined';
+      font-size: 20px;
+      line-height: 20px;
+      color: $grey-6;
+
+      visibility: visible;
+    }
+  }
+
+  .react-select__control--menu-is-open {
+    .react-select__placeholder,
+    .react-select__single-value {
+      visibility: hidden;
+    }
+
+    .react-select__dropdown-indicator::before {
+      content: 'keyboard_arrow_up';
+    }
+  }
+
+  /**
+   * Menu and its content
+   */
+
+  .react-select__menu {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .react-select__option {
+    color: $dark;
+  }
+
+  .react-select__option--is-selected {
+    color: $dark;
+    background-color: $grey-3;
+  }
+
+  .react-select__option--is-focused {
+    color: $white;
+    background-color: $green;
+  }
+
+  .react-select__option:active {
+    background-color: $dark-green;
+  }
+
+  .react-select__single-value {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+/**
+ * Inside a table
+ */
+
+.react-select--table {
+  .react-select__control {
+    border-color: transparent;
+    background: none;
+  }
+
+  .react-select__control:not(.react-select__control--menu-is-open) .react-select__value-container {
+    justify-content: center;
+  }
+
+  .react-select__menu {
+    min-width: 160px;
+    text-align: left;
+  }
+}

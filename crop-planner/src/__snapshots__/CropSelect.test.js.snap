@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CropSelect /> renders 1`] = `
+<StateManager
+  className="react-select react-select--table"
+  classNamePrefix="react-select"
+  defaultInputValue=""
+  defaultMenuIsOpen={false}
+  defaultValue={null}
+  onChange={[MockFunction]}
+  options={
+    Array [
+      Object {
+        "label": "My Crop",
+        "value": 1,
+      },
+      Object {
+        "label": "My Second Crop",
+        "value": 2,
+      },
+    ]
+  }
+  value={
+    Object {
+      "label": "My Crop",
+      "value": 1,
+    }
+  }
+/>
+`;

@@ -1,0 +1,238 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Table /> loads data when component mounted 1`] = `
+<div
+  className="table"
+>
+  <div
+    className="table__row table__row--header"
+  >
+    <div
+      className="table__cell"
+    >
+      Field name
+    </div>
+    <div
+      className="table__cell table__cell--right"
+    >
+      Field area (ha)
+    </div>
+    <div
+      className="table__cell table__cell--center"
+    >
+      2020 crop
+    </div>
+    <div
+      className="table__cell table__cell--center"
+    >
+      2021 crop
+    </div>
+    <div
+      className="table__cell table__cell--center"
+    >
+      2022 crop
+    </div>
+    <div
+      className="table__cell table__cell--center"
+    >
+      2023 crop
+    </div>
+    <div
+      className="table__cell table__cell--center"
+    >
+      2024 crop
+    </div>
+    <div
+      className="table__cell table__cell--right"
+    >
+      Humus balance
+    </div>
+  </div>
+  <div
+    className="table__row"
+    key="1"
+  >
+    <div
+      className="table__cell"
+    >
+      Mäeotsa
+    </div>
+    <div
+      className="table__cell table__cell--right"
+    >
+      0.93
+    </div>
+    <div
+      className="table__cell table__cell--center table__cell--with-select"
+    >
+      <CropSelect
+        allCrops={
+          Array [
+            Object {
+              "humus_delta": 1,
+              "label": "Crop 1",
+              "value": 1,
+            },
+          ]
+        }
+        onChange={[Function]}
+        selectedCrop={
+          Object {
+            "humus_delta": 1,
+            "label": "Crop 1",
+            "value": 1,
+          }
+        }
+      />
+    </div>
+    <div
+      className="table__cell table__cell--center table__cell--with-select"
+    >
+      <CropSelect
+        allCrops={
+          Array [
+            Object {
+              "humus_delta": 1,
+              "label": "Crop 1",
+              "value": 1,
+            },
+          ]
+        }
+        onChange={[Function]}
+        selectedCrop={
+          Object {
+            "humus_delta": 1,
+            "label": "Crop 2",
+            "value": 2,
+          }
+        }
+      />
+    </div>
+    <div
+      className="table__cell table__cell--center table__cell--with-select"
+    >
+      <CropSelect
+        allCrops={
+          Array [
+            Object {
+              "humus_delta": 1,
+              "label": "Crop 1",
+              "value": 1,
+            },
+          ]
+        }
+        onChange={[Function]}
+        selectedCrop={
+          Object {
+            "humus_delta": 1,
+            "label": "Crop 3",
+            "value": 3,
+          }
+        }
+      />
+    </div>
+    <div
+      className="table__cell table__cell--center table__cell--with-select"
+    >
+      <CropSelect
+        allCrops={
+          Array [
+            Object {
+              "humus_delta": 1,
+              "label": "Crop 1",
+              "value": 1,
+            },
+          ]
+        }
+        onChange={[Function]}
+        selectedCrop={
+          Object {
+            "humus_delta": 1,
+            "label": "Crop 4",
+            "value": 4,
+          }
+        }
+      />
+    </div>
+    <div
+      className="table__cell table__cell--center table__cell--with-select"
+    >
+      <CropSelect
+        allCrops={
+          Array [
+            Object {
+              "humus_delta": 1,
+              "label": "Crop 1",
+              "value": 1,
+            },
+          ]
+        }
+        onChange={[Function]}
+        selectedCrop={
+          Object {
+            "humus_delta": 1,
+            "label": "Crop 5",
+            "value": 5,
+          }
+        }
+      />
+    </div>
+    <div
+      className="table__cell table__cell--right"
+    >
+      --
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Table /> renders with empty data 1`] = `
+<div
+  className="table"
+>
+  <div
+    className="table__row table__row--header"
+  >
+    <div
+      className="table__cell"
+    >
+      Field name
+    </div>
+    <div
+      className="table__cell table__cell--right"
+    >
+      Field area (ha)
+    </div>
+    <div
+      className="table__cell table__cell--center"
+    >
+      2020 crop
+    </div>
+    <div
+      className="table__cell table__cell--center"
+    >
+      2021 crop
+    </div>
+    <div
+      className="table__cell table__cell--center"
+    >
+      2022 crop
+    </div>
+    <div
+      className="table__cell table__cell--center"
+    >
+      2023 crop
+    </div>
+    <div
+      className="table__cell table__cell--center"
+    >
+      2024 crop
+    </div>
+    <div
+      className="table__cell table__cell--right"
+    >
+      Humus balance
+    </div>
+  </div>
+</div>
+`;
