@@ -1,0 +1,205 @@
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://docs.rubocop.org/rubocop/configuration
+
+AllCops:
+  NewCops: enable
+  DisplayCopNames: true
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - '.git/**/*'
+    - bin/*
+    - db/migrate/*
+    - scripts/oneoffs/*
+    - scripts/*
+    - config/*
+    - Capfile
+    - Guardfile
+
+Gemspec/DateAssignment:
+  Enabled: false
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/FirstArgumentIndentation:
+  EnforcedStyle: consistent
+Layout/ExtraSpacing:
+  Enabled: false
+Layout/LineLength:
+  Max: 120
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Layout/SpaceBeforeBrackets:
+  Enabled: true
+
+Metrics/AbcSize:
+  Max: 50
+Metrics/BlockLength:
+  Max: 40
+  IgnoredMethods: ['before', 'configure', 'context', 'xcontext', 'describe', 'xdescribe', 'feature', 'let', 'shared_examples', 'shared_context', 'values']
+Metrics/ClassLength:
+  Max: 200
+Metrics/MethodLength:
+  Max: 40
+Metrics/ParameterLists:
+  Max: 7
+
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+Naming/MethodParameterName:
+  AllowedNames:
+    - js
+Naming/VariableNumber:
+  Enabled: false
+
+Style/AccessorGrouping:
+  Enabled: true
+Style/ArgumentsForwarding:
+  Enabled: true
+Style/ArrayCoercion:
+  Enabled: true
+Style/BisectedAttrAccessor:
+  Enabled: true
+Style/BlockDelimiters:
+  EnforcedStyle:
+    semantic
+  FunctionalMethods:
+    - before
+    - let
+    - let!
+    - subject
+    - expect
+    - default_scope
+    - find
+    - map
+    - select
+    - instance_var
+    - validate
+Style/CaseLikeIf:
+  Enabled: true
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/CollectionCompact:
+  Enabled: true
+Style/DocumentDynamicEvalDefinition:
+  Enabled: true
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+Style/GuardClause:
+  Enabled: false
+Style/HashAsLastArrayItem:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: true
+Style/HashExcept:
+  Enabled: true
+Style/HashLikeCase:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/MultilineBlockChain:
+  Enabled: false
+Style/NegatedIfElseCondition:
+  Enabled: true
+Style/NilLambda:
+  Enabled: true
+Style/PreferredHashMethods:
+  Enabled: false
+Style/RaiseArgs:
+  EnforcedStyle: compact
+Style/RedundantFetchBlock:
+  Enabled: true
+Style/StringChars:
+  Enabled: true
+Style/SymbolArray:
+  Enabled: true
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+Style/EndlessMethod:
+  Enabled: true
+Style/ExponentialNotation:
+  Enabled: true
+Style/HashConversion:
+  Enabled: true
+Style/IfWithBooleanLiteralBranches:
+  Enabled: true
+Style/SafeNavigation:
+  AutoCorrect: false
+Style/SwapValues:
+  Enabled: true
+Style/SlicingWithRange:
+  Enabled: true
+Style/RedundantAssignment:
+  Enabled: true
+Style/RedundantFileExtensionInRequire:
+  Enabled: true
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantArgument:
+  Enabled: false
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+Lint/AmbiguousAssignment:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/DeprecatedConstants:
+  Enabled: true
+Lint/DuplicateBranch:
+  Enabled: true
+Lint/DuplicateElsifCondition:
+  Enabled: true
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+Lint/EmptyBlock:
+  Enabled: false # rspec let's
+Lint/EmptyClass:
+  Enabled: true
+Lint/LambdaWithoutLiteralBlock:
+  Enabled: true
+Lint/MissingCopEnableDirective:
+  Enabled: false
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+Lint/NumberedParameterAssignment:
+  Enabled: true
+Lint/OrAssignmentToConstant:
+  Enabled: true
+Lint/RedundantCopDisableDirective:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: true
+Lint/RedundantDirGlobSort:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Lint/SymbolConversion:
+  Enabled: true
+Lint/ToEnumArguments:
+  Enabled: true
+Lint/TripleQuotes:
+  Enabled: true
+Lint/UnexpectedBlockArity:
+  Enabled: true
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true

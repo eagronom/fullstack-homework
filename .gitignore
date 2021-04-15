@@ -1,0 +1,9 @@
+# crop-planner
+/crop-planner/node_modules
+/crop-planner/log/development.log
+/crop-planner/tmp/cache/webpacker/last-compilation-digest-development
+
+# soil-service
+/soil-service/.bundle
+/soil-service/log/*
+/soil-service/tmp/*

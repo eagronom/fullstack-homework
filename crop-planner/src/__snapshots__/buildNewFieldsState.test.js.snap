@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildNewFieldsState() returns updated state 1`] = `
+Object {
+  "fields": Array [
+    Object {
+      "area": 0.93,
+      "crops": Array [
+        Object {
+          "crop": Object {
+            "humus_delta": 5,
+            "label": "Crop 1",
+            "value": 1,
+          },
+          "year": 2020,
+        },
+        Object {
+          "crop": Object {
+            "humus_delta": 4,
+            "label": "Crop 2",
+            "value": 2,
+          },
+          "year": 2021,
+        },
+        Object {
+          "crop": Object {
+            "humus_delta": 3,
+            "label": "Crop 3",
+            "value": 3,
+          },
+          "year": 2022,
+        },
+        Object {
+          "crop": Object {
+            "humus_delta": 2,
+            "label": "Crop 4",
+            "value": 4,
+          },
+          "year": 2023,
+        },
+        Object {
+          "crop": Object {
+            "humus_delta": 1,
+            "label": "Crop 5",
+            "value": 5,
+          },
+          "year": 2024,
+        },
+      ],
+      "id": 1,
+      "name": "Mäeotsa",
+    },
+    Object {
+      "area": 3,
+      "crops": Array [
+        Object {
+          "crop": Object {
+            "humus_delta": 5,
+            "label": "Crop 1",
+            "value": 1,
+          },
+          "year": 2020,
+        },
+        Object {
+          "crop": Object {
+            "humus_delta": 4,
+            "label": "Crop 2",
+            "value": 2,
+          },
+          "year": 2021,
+        },
+        Object {
+          "crop": Object {
+            "humus_delta": 2,
+            "label": "Crop 4",
+            "value": 4,
+          },
+          "year": 2023,
+        },
+        Object {
+          "crop": Object {
+            "humus_delta": 1,
+            "label": "Crop 5",
+            "value": 5,
+          },
+          "year": 2024,
+        },
+        Object {
+          "crop": Object {
+            "humus_delta": 1,
+            "label": "Crop 6",
+            "value": 6,
+          },
+          "year": 2022,
+        },
+      ],
+      "id": 2,
+      "name": "Orupealse",
+    },
+  ],
+}
+`;

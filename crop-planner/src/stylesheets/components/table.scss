@@ -1,0 +1,96 @@
+@mixin cells($columns) {
+  .table__cell {
+    flex: 1 1 percentage(1 / $columns);
+  }
+
+  @for $i from 2 through $columns {
+    .table__cell--#{$i}-cols {
+      flex: 1 1 percentage($i / $columns);
+    }
+  }
+}
+
+.table {
+  @include cells(12);
+
+  border: $grey-border;
+  border-radius: $border-radius;
+}
+
+/**
+ * Base row
+ */
+
+.table__row {
+  display: flex;
+  background-color: $white;
+
+  &:hover {
+    background-color: $grey-1;
+  }
+}
+
+/**
+ * Base cell
+ */
+
+.table__cell {
+  padding: 12px;
+  border-right: $grey-border;
+  border-bottom: $grey-border;
+
+  word-break: break-word;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.table__cell--center {
+  align-items: center;
+  text-align: center;
+}
+
+.table__cell--right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.table__cell--with-select {
+  padding: 2px 12px;
+}
+
+/**
+ * First row
+ */
+.table__row:first-child {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+/**
+ * Last row
+ */
+
+.table__row:last-child {
+  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+
+  .table__cell {
+    border-bottom: none;
+  }
+}
+
+/**
+ * Header row
+ */
+
+.table__row--header {
+  color: $grey-6;
+  font-weight: bold;
+}
+
+.table__row--header .table__cell {
+  border-bottom-color: $grey-3;
+  border-bottom-width: 2px;
+}
