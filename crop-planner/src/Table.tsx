@@ -77,7 +77,7 @@ export default class Table extends PureComponent<Props, State> {
     if (field.humusBalance == null || this.state.fieldIdToInitialHumusBalance[field.id] === field.humusBalance) {
       return '';
     }
-    return this.state.fieldIdToInitialHumusBalance[field.id] < field.humusBalance ? ' better-humus' : ' worse-humus';
+    return this.state.fieldIdToInitialHumusBalance[field.id] < field.humusBalance ? ' better-humus-balance' : ' worse-humus-balance';
   }
 
   renderCropCell = (field: Field, seasonalCrop: SeasonalCrop) =>
