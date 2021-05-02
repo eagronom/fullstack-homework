@@ -44,6 +44,14 @@
   &:last-child {
     border-right: none;
   }
+
+  &.better-humus {
+    color: green;
+  }
+
+  &.worse-humus {
+    color: red;
+  }
 }
 
 .table__cell--center {
