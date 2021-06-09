@@ -14,7 +14,7 @@ class FieldsService
           { year: 2022, crop: CropsService::WINTER_WHEAT },
           { year: 2023, crop: CropsService::OATS },
           { year: 2024, crop: CropsService::WINTER_WHEAT },
-        ],
+        ]
       },
       {
         id: 2,
@@ -39,7 +39,8 @@ class FieldsService
           { year: 2023, crop: CropsService::SPRING_WHEAT },
           { year: 2024, crop: CropsService::SPRING_WHEAT },
         ],
-      },
+      }
     ]
+
   end
 end

@@ -1,6 +1,8 @@
 class FieldsController < ActionController::Base
   def index
-    render json: FieldsService.instance.fetch_fields
+    fields = FieldsService.instance.fetch_fields
+    repo = FieldsRepository.new(fields).call
+    render json: repo
   end
 
   def humus_balance

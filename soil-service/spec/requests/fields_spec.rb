@@ -7,4 +7,13 @@ RSpec.describe "Fields", type: :request do
       expect(JSON.parse(response.body)).to eq('humus_balance' => 19.11)
     end
   end
+
+  describe 'GET /fields' do
+    it 'return fields' do
+      get fields_path, params: {}
+      res = JSON.parse(response.body)
+      expect(res[0]['humus_balance']).to eq(-6.35)
+      expect(res[0].keys).to match_array(['id', 'area', 'name', 'crops', 'humus_balance'])
+    end
+  end
 end
