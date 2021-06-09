@@ -9,5 +9,6 @@ export type Field = {
   id: number,
   name: string,
   area: number,
+  humus_balance: number,
   crops: Array<SeasonalCrop>,
 }

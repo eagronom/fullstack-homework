@@ -5,6 +5,7 @@ import CropSelect from './CropSelect'
 import { Crop, Field, SeasonalCrop } from './types'
 import { fetchCrops, fetchFields } from './api'
 import buildNewFieldsState from './buildNewFieldsState'
+import { serialize } from 'node:v8'
 
 type Props = {}
 
@@ -46,17 +47,17 @@ export default class Table extends PureComponent<Props, State> {
     </div>
 
   renderFieldRow = (field: Field) =>
-    <div className="table__row" key={field.id}>
+    <div className="table__row" key={field.id.toString()}>
       <div className="table__cell">{field.name}</div>
       <div className="table__cell table__cell--right">{field.area}</div>
 
       {sortBy(field.crops, crop => crop.year).map(seasonalCrop => this.renderCropCell(field, seasonalCrop))}
 
-      <div className="table__cell table__cell--right">--</div>
+      <div className="table__cell table__cell--right"> { field.humus_balance || '--' }</div>
     </div>
 
   renderCropCell = (field: Field, seasonalCrop: SeasonalCrop) =>
-    <div className="table__cell table__cell--center table__cell--with-select">
+    <div className="table__cell table__cell--center table__cell--with-select" key={seasonalCrop.year.toString()}>
       <CropSelect
         selectedCrop={seasonalCrop.crop}
         allCrops={this.state.allCrops}

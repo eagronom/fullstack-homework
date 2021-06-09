@@ -64,6 +64,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--center table__cell--with-select"
+      key="2020"
     >
       <CropSelect
         allCrops={
@@ -87,6 +88,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--center table__cell--with-select"
+      key="2021"
     >
       <CropSelect
         allCrops={
@@ -110,6 +112,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--center table__cell--with-select"
+      key="2022"
     >
       <CropSelect
         allCrops={
@@ -133,6 +136,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--center table__cell--with-select"
+      key="2023"
     >
       <CropSelect
         allCrops={
@@ -156,6 +160,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--center table__cell--with-select"
+      key="2024"
     >
       <CropSelect
         allCrops={
@@ -180,7 +185,8 @@ exports[`<Table /> loads data when component mounted 1`] = `
     <div
       className="table__cell table__cell--right"
     >
-      --
+       
+      8.95
     </div>
   </div>
 </div>
