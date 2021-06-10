@@ -7,3 +7,4 @@
 /soil-service/.bundle
 /soil-service/log/*
 /soil-service/tmp/*
+/soil-service/.ruby-*

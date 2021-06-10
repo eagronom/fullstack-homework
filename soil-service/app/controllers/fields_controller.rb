@@ -1,4 +1,4 @@
-class FieldsController < ActionController::Base
+class FieldsController < ApplicationController
   def index
     fields = FieldsService.instance.fetch_fields
     repo = FieldsRepository.new(fields).call

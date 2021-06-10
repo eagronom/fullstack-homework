@@ -3,8 +3,10 @@ import { sortBy } from 'lodash'
 
 import CropSelect from './CropSelect'
 import { Crop, Field, SeasonalCrop } from './types'
-import { fetchCrops, fetchFields } from './api'
-import buildNewFieldsState from './buildNewFieldsState'
+import { fetchCrops, fetchFields, fetchHumusBalance } from './api'
+import buildCropState from './buildNewFieldsState'
+import { updateFieldState } from './buildNewFieldsState'
+
 import { serialize } from 'node:v8'
 
 type Props = {}
@@ -65,8 +67,25 @@ export default class Table extends PureComponent<Props, State> {
       />
     </div>
 
-  changeFieldCrop = (newCrop: Crop | null, fieldId: number, cropYear: number) =>
+  calculateHumusBalance = async (fieldId: number) => {
+    const currentField = this.state.fields.find(field => field.id == fieldId)
+
+    if (currentField) {
+      const humus_deltas = sortBy(currentField.crops, crop => crop.year)
+        .map(seasonCrop => seasonCrop.crop ? seasonCrop.crop.humus_delta : 0)
+      const { humus_balance } = await fetchHumusBalance(humus_deltas)
+      this.setState(
+        updateFieldState(this.state.fields, fieldId, humus_balance)
+      )
+    }
+  }
+
+  changeFieldCrop = async (newCrop: Crop | null, fieldId: number, cropYear: number) => {
     this.setState(
-      buildNewFieldsState(this.state.fields, newCrop, fieldId, cropYear),
+      buildCropState(this.state.fields, newCrop, fieldId, cropYear),
+      function(this: Table) {
+        this.calculateHumusBalance(fieldId)
+      }
     )
+  }
 }
