@@ -183,9 +183,8 @@ exports[`<Table /> loads data when component mounted 1`] = `
       />
     </div>
     <div
-      className="table__cell table__cell--right"
+      className="table__cell table__cell--right table__cell--positive"
     >
-       
       8.95
     </div>
   </div>
