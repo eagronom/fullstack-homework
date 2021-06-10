@@ -56,6 +56,14 @@
   text-align: right;
 }
 
+.table__cell--positive {
+  color: $light-green;
+}
+
+.table__cell--negative {
+  color: $light-red;
+}
+
 .table__cell--with-select {
   padding: 2px 12px;
 }

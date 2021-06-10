@@ -7,8 +7,6 @@ import { fetchCrops, fetchFields, fetchHumusBalance } from './api'
 import buildCropState from './buildNewFieldsState'
 import { updateFieldState } from './buildNewFieldsState'
 
-import { serialize } from 'node:v8'
-
 type Props = {}
 
 type State = {
@@ -48,6 +46,10 @@ export default class Table extends PureComponent<Props, State> {
       {sortBy(this.state.fields, field => field.name).map(field => this.renderFieldRow(field))}
     </div>
 
+  humusBalanceIcon = (balance: number) => {
+    return balance && balance > 0 ? 'table__cell--positive' : 'table__cell--negative'
+  }
+
   renderFieldRow = (field: Field) =>
     <div className="table__row" key={field.id.toString()}>
       <div className="table__cell">{field.name}</div>
@@ -55,7 +57,9 @@ export default class Table extends PureComponent<Props, State> {
 
       {sortBy(field.crops, crop => crop.year).map(seasonalCrop => this.renderCropCell(field, seasonalCrop))}
 
-      <div className="table__cell table__cell--right"> { field.humus_balance || '--' }</div>
+      <div className={"table__cell table__cell--right " + this.humusBalanceIcon(field.humus_balance)}>
+         { field.humus_balance || '--' }
+      </div>
     </div>
 
   renderCropCell = (field: Field, seasonalCrop: SeasonalCrop) =>
@@ -68,7 +72,7 @@ export default class Table extends PureComponent<Props, State> {
     </div>
 
   calculateHumusBalance = async (fieldId: number) => {
-    const currentField = this.state.fields.find(field => field.id == fieldId)
+    const currentField = this.state.fields.find(field => field.id === fieldId)
 
     if (currentField) {
       const humus_deltas = sortBy(currentField.crops, crop => crop.year)
