@@ -8,3 +8,4 @@
 /soil-service/log/*
 /soil-service/tmp/*
 /soil-service/.ruby-*
+/soil-service/.byebug_history
