@@ -1,0 +1,10 @@
+version: "3.6"
+
+services:
+  soil-service:
+    container_name: soil-service
+    build: ./soil-service
+    volumes:
+      - ./soil-service:/code
+    ports:
+      - 3000:3000
