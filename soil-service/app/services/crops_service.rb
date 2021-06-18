@@ -21,4 +21,9 @@ class CropsService
   def fetch_all_crops
     CROPS
   end
+
+  def get_crop(crop_value)
+    self.fetch_all_crops.find { |field| field[:value] == crop_value}
+  end
+
 end

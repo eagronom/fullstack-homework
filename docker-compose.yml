@@ -4,6 +4,7 @@ services:
   soil-service:
     container_name: soil-service
     build: ./soil-service
+    command: bash -c "/code/start.sh"
     volumes:
       - ./soil-service:/code
     ports:

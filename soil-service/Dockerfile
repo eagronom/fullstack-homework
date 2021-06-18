@@ -6,4 +6,4 @@ WORKDIR /code
 COPY . /code/
 RUN bundle install
 EXPOSE 3000
-ENTRYPOINT [ "/code/start.sh" ]
+CMD ["/code/start.sh"]

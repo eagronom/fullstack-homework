@@ -42,4 +42,8 @@ class FieldsService
       },
     ]
   end
+
+  def get_field(field_id)
+    self.fetch_fields.find { |field| field[:id] == field_id}
+  end
 end
