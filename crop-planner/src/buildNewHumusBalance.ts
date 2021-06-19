@@ -6,7 +6,7 @@ const buildNewHumusBalance = (
 ) => {
   const previousFieldHumusBalanceIndex = oldHumusBalance.findIndex(
     (fieldHumusBalance) =>
-      fieldHumusBalance.field.id === newFieldHumusBalance.field.id
+      fieldHumusBalance.fieldId === newFieldHumusBalance.fieldId
   );
   const humusBalance = [...oldHumusBalance];
   if (previousFieldHumusBalanceIndex > -1) {

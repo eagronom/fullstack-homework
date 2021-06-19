@@ -11,9 +11,7 @@ class HumusBalanceService
       {
             field_id: @field[:id],
             humus_balance: humus_balance,
-            crops: @year_crop_mapping,
             previous_humus_balance: previous_humus_balance,
-            previous_crop: @field[:crops]
       }
     end
 

@@ -1,4 +1,4 @@
-import { Crop, Field, FieldHumusBalance } from "./types";
+import { Crop, Field, HumusBalanceAPIRespone } from "./types";
 
 const SOIL_SERVICE_URL = "http://localhost:3000";
 
@@ -10,20 +10,11 @@ export const fetchCrops = async (): Promise<Array<Crop>> =>
 
 export const fetchHumusBalance = async (
   field: Field
-): Promise<FieldHumusBalance> => {
+): Promise<HumusBalanceAPIRespone> => {
   const params = `field_id=${field.id}&${field.crops
     .map((crop) => `years[${crop.year}]=${crop.crop?.value}`)
     .join("&")}`;
-  const balanceReponse = await fetch(
+  return await fetch(
     `${SOIL_SERVICE_URL}/humus-balance/?${encodeURI(params)}`
   ).then((response) => response.json());
-  return {
-    field,
-    currentBalance: balanceReponse.humus_balance,
-    previousBalance: balanceReponse.previous_humus_balance,
-  };
-};
-
-export const fetchManyFieldsHumusBalance = async (fields: Array<Field>) => {
-  return await Promise.all(fields.map(fetchHumusBalance));
 };

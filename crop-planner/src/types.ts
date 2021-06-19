@@ -13,7 +13,13 @@ export type Field = {
 };
 
 export type FieldHumusBalance = {
-  field: Field;
+  fieldId: number;
   currentBalance: number;
   previousBalance: number;
+};
+
+export type HumusBalanceAPIRespone = {
+  field_id: number;
+  humus_balance: number;
+  previous_humus_balance: number;
 };

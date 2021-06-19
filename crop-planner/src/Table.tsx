@@ -3,12 +3,12 @@ import { sortBy } from "lodash";
 
 import CropSelect from "./CropSelect";
 import { Crop, Field, SeasonalCrop, FieldHumusBalance } from "./types";
+import { fetchCrops, fetchFields, fetchHumusBalance } from "./api";
 import {
-  fetchCrops,
-  fetchFields,
   fetchManyFieldsHumusBalance,
-  fetchHumusBalance,
-} from "./api";
+  serializeHumusBalanceResponse,
+  serializeManyHumusBalanceResponse,
+} from "./api.utils";
 import buildNewFieldsState from "./buildNewFieldsState";
 import buildNewHumusBalance from "./buildNewHumusBalance";
 
@@ -21,7 +21,7 @@ type State = {
 };
 
 const humusBalanceSelector = (field: Field, state: State) =>
-  state.humusBalance.find((balance) => balance.field.id === field.id);
+  state.humusBalance.find((balance) => balance.fieldId === field.id);
 
 const fieldSelector = (fieldId: number, fields: Array<Field>) =>
   fields.find((field) => field.id === fieldId);
@@ -48,7 +48,9 @@ export default class Table extends PureComponent<Props, State> {
   componentDidMount = async () => {
     const fields = await fetchFields();
     const allCrops = await fetchCrops();
-    const humusBalance = await fetchManyFieldsHumusBalance(fields);
+    const fieldsHumusBalance = await fetchManyFieldsHumusBalance(fields);
+    console.log(fieldsHumusBalance, "locox");
+    const humusBalance = serializeManyHumusBalanceResponse(fieldsHumusBalance);
 
     return this.setState({
       fields,
@@ -58,7 +60,6 @@ export default class Table extends PureComponent<Props, State> {
   };
 
   render = () => {
-    console.log(this.state);
     return (
       <div className="table">
         <div className="table__row table__row--header">
@@ -133,7 +134,7 @@ export default class Table extends PureComponent<Props, State> {
     if (fieldUpdated) {
       newHumusBalance = buildNewHumusBalance(
         this.state.humusBalance,
-        await fetchHumusBalance(fieldUpdated)
+        serializeHumusBalanceResponse(await fetchHumusBalance(fieldUpdated))
       );
     }
     return this.setState({ ...newFieldsState, ...newHumusBalance });

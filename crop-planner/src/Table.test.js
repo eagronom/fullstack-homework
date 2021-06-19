@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
 
 import Table from "./Table";
-import { fetchCrops, fetchFields, fetchManyFieldsHumusBalance } from "./api";
+import { fetchCrops, fetchFields, fetchHumusBalance } from "./api";
 
 jest.mock("./api");
 
@@ -22,10 +22,16 @@ describe("<Table />", () => {
     },
   ];
 
+  const humusBalance = {
+    field_id: 1,
+    humus_balance: -4.3,
+    previous_humus_balance: -3,
+  };
+
   beforeEach(() => {
     fetchCrops.mockReturnValue(crops);
     fetchFields.mockReturnValue(fields);
-    fetchManyFieldsHumusBalance.mockReturnValue([]);
+    fetchHumusBalance.mockReturnValue({});
   });
 
   it("renders with empty data", async () => {
@@ -33,6 +39,15 @@ describe("<Table />", () => {
   });
 
   it("loads data when component mounted", async () => {
+    expect(
+      await shallow(<Table />)
+        .instance()
+        .componentDidMount()
+    ).toMatchSnapshot();
+  });
+
+  it("loads data when component mounted with humus balance information", async () => {
+    fetchHumusBalance.mockReturnValue(humusBalance);
     expect(
       await shallow(<Table />)
         .instance()
