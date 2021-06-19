@@ -17,12 +17,12 @@ class HumusBalanceService
 
     private
     def validate_parameters(parameters)
+      raise ApiExceptions::HumusBalanceError::MissingFieldIdError.new unless parameters[:field_id]
       field_id = parameters[:field_id].to_i
-      raise ApiExceptions::HumusBalanceError::MissingFieldIdError.new unless field_id
       raise ApiExceptions::HumusBalanceError::FieldDoesNotExistError.new unless @field = FieldsService.instance.get_field(field_id)
       @year_crop_mapping = parameters[:years].to_hash().sort_by {|year| year}.map do|elem|
         year = elem[0]
-        crop =  CropsService.instance.get_crop(elem[1].to_i)
+        raise ApiExceptions::HumusBalanceError::CropDoesNotExistError.new unless crop = CropsService.instance.get_crop(elem[1].to_i)
         {
           year: year,
           crop: crop
