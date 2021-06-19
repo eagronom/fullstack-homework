@@ -1,4 +1,6 @@
 import { shallow } from "enzyme";
+import { screen, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Table from "./Table";
 import { fetchCrops, fetchFields, fetchHumusBalance } from "./api";
@@ -53,5 +55,79 @@ describe("<Table />", () => {
         .instance()
         .componentDidMount()
     ).toMatchSnapshot();
+  });
+
+  it("shows new humus balance value after select different crop", async () => {
+    fetchCrops.mockReturnValue([
+      ...crops,
+      { value: 6, label: "Crop 6", humus_delta: 1 },
+    ]);
+
+    fetchHumusBalance
+      .mockReturnValueOnce(humusBalance)
+      .mockReturnValueOnce({ ...humusBalance, humus_balance: 100.0 });
+
+    render(<Table />);
+
+    const cropDropDown = await screen.findByText("Crop 1");
+    userEvent.click(cropDropDown);
+
+    const newCropOption = await screen.findByText("Crop 6");
+    userEvent.click(newCropOption);
+    expect(await screen.findByText(/100\.00/i)).toBeTruthy();
+  });
+
+  it("shows humus balance as good", async () => {
+    fetchCrops.mockReturnValue([
+      ...crops,
+      { value: 6, label: "Crop 6", humus_delta: 1 },
+    ]);
+
+    const goodHumusBalance = 100.0;
+
+    fetchHumusBalance
+      .mockReturnValueOnce(humusBalance)
+      .mockReturnValueOnce({
+        ...humusBalance,
+        humus_balance: goodHumusBalance,
+      });
+
+    render(<Table />);
+
+    const cropDropDown = await screen.findByText("Crop 1");
+    userEvent.click(cropDropDown);
+
+    const newCropOption = await screen.findByText("Crop 6");
+    userEvent.click(newCropOption);
+    const humusBalanceText = await screen.findByText(
+      goodHumusBalance.toFixed(2)
+    );
+
+    expect(humusBalanceText).toMatchSnapshot();
+  });
+
+  it("shows humus balance as bad balance", async () => {
+    fetchCrops.mockReturnValue([
+      ...crops,
+      { value: 6, label: "Crop 6", humus_delta: 1 },
+    ]);
+    const badHumusBalance = humusBalance.previous_humus_balance - 1;
+    fetchHumusBalance.mockReturnValueOnce(humusBalance).mockReturnValueOnce({
+      ...humusBalance,
+      humus_balance: badHumusBalance,
+    });
+
+    render(<Table />);
+
+    const cropDropDown = await screen.findByText("Crop 1");
+    userEvent.click(cropDropDown);
+
+    const newCropOption = await screen.findByText("Crop 6");
+    userEvent.click(newCropOption);
+    const humusBalanceText = await screen.findByText(
+      badHumusBalance.toFixed(2)
+    );
+
+    expect(humusBalanceText).toMatchSnapshot();
   });
 });

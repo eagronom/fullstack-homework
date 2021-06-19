@@ -422,3 +422,19 @@ exports[`<Table /> renders with empty data 1`] = `
   </div>
 </div>
 `;
+
+exports[`<Table /> shows humus balance as bad balance 1`] = `
+<div
+  class="table__cell table__cell--right table__cell--bad-balance"
+>
+  -4.00
+</div>
+`;
+
+exports[`<Table /> shows humus balance as good 1`] = `
+<div
+  class="table__cell table__cell--right table__cell--good-balance"
+>
+  100.00
+</div>
+`;
