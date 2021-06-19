@@ -94,3 +94,18 @@
   border-bottom-color: $grey-3;
   border-bottom-width: 2px;
 }
+
+.table__cell--good-balance {
+  background-color: darkgreen;
+  color: white;
+}
+
+.table__cell--bad-balance {
+  background-color: red;
+  color: white;
+}
+
+.table__cell--same-balance {
+  background-color: none;
+  color: inherit;
+}
