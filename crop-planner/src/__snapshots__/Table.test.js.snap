@@ -47,10 +47,15 @@ exports[`<Table /> loads data when component mounted 1`] = `
     >
       Humus balance
     </div>
+    <div
+      className="table__cell table__cell--right"
+    >
+      Impact
+    </div>
   </div>
   <div
     className="table__row"
-    key="1"
+    key="Mäeotsa"
   >
     <div
       className="table__cell"
@@ -64,6 +69,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--center table__cell--with-select"
+      key="Mäeotsa0"
     >
       <CropSelect
         allCrops={
@@ -87,6 +93,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--center table__cell--with-select"
+      key="Mäeotsa1"
     >
       <CropSelect
         allCrops={
@@ -110,6 +117,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--center table__cell--with-select"
+      key="Mäeotsa2"
     >
       <CropSelect
         allCrops={
@@ -133,6 +141,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--center table__cell--with-select"
+      key="Mäeotsa3"
     >
       <CropSelect
         allCrops={
@@ -156,6 +165,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--center table__cell--with-select"
+      key="Mäeotsa4"
     >
       <CropSelect
         allCrops={
@@ -179,8 +189,20 @@ exports[`<Table /> loads data when component mounted 1`] = `
     </div>
     <div
       className="table__cell table__cell--right"
+    />
+    <div
+      className="table__cell table__cell--right"
     >
-      --
+      <b
+        style={
+          Object {
+            "color": "grey",
+          }
+        }
+      >
+        ＝
+      </b>
+      Degrading
     </div>
   </div>
 </div>
@@ -232,6 +254,11 @@ exports[`<Table /> renders with empty data 1`] = `
       className="table__cell table__cell--right"
     >
       Humus balance
+    </div>
+    <div
+      className="table__cell table__cell--right"
+    >
+      Impact
     </div>
   </div>
 </div>
