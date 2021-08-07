@@ -1,16 +1,18 @@
 import { PureComponent } from 'react'
-import { sortBy } from 'lodash'
+import {sortBy, find } from 'lodash'
 
 import CropSelect from './CropSelect'
-import { Crop, Field, SeasonalCrop } from './types'
-import { fetchCrops, fetchFields } from './api'
+import {Crop, Field, HumusBalance, SeasonalCrop} from './types'
+import { fetchCrops, fetchFields, fetchHumusBalance, calculateHumusBalance } from './api'
 import buildNewFieldsState from './buildNewFieldsState'
+import buildNewHumusState from "./buildNewHumusState";
 
 type Props = {}
 
 type State = {
   allCrops: Array<Crop>,
-  fields: Array<Field>
+  fields: Array<Field>,
+  humusBalance: Array<HumusBalance>
 }
 
 export default class Table extends PureComponent<Props, State> {
@@ -20,6 +22,7 @@ export default class Table extends PureComponent<Props, State> {
     this.state = {
       allCrops: [],
       fields: [],
+      humusBalance: []
     }
   }
 
@@ -27,6 +30,7 @@ export default class Table extends PureComponent<Props, State> {
     this.setState({
       fields: await fetchFields(),
       allCrops: await fetchCrops(),
+      humusBalance: await fetchHumusBalance()
     })
 
   render = () =>
@@ -52,7 +56,7 @@ export default class Table extends PureComponent<Props, State> {
 
       {sortBy(field.crops, crop => crop.year).map(seasonalCrop => this.renderCropCell(field, seasonalCrop))}
 
-      <div className="table__cell table__cell--right">--</div>
+      <div className="table__cell table__cell--right">{find(this.state.humusBalance, humusBalance => field.id === humusBalance.field_id)?.humus_balance ?? 'Not Calculated'}</div>
     </div>
 
   renderCropCell = (field: Field, seasonalCrop: SeasonalCrop) =>
@@ -64,8 +68,18 @@ export default class Table extends PureComponent<Props, State> {
       />
     </div>
 
-  changeFieldCrop = (newCrop: Crop | null, fieldId: number, cropYear: number) =>
-    this.setState(
-      buildNewFieldsState(this.state.fields, newCrop, fieldId, cropYear),
-    )
+  changeFieldCrop = (newCrop: Crop | null, fieldId: number, cropYear: number) => {
+      let newFieldsState = buildNewFieldsState(this.state.fields, newCrop, fieldId, cropYear)
+      this.setState(newFieldsState)
+      const changedField = find(newFieldsState.fields, field => field.id === fieldId)!
+
+      let newBalance = calculateHumusBalance(changedField)
+      newBalance.then((humusBalance) => {
+          this.setState(buildNewHumusState(this.state.humusBalance, humusBalance))
+      })
+
+
+      return null
+  }
+
 }

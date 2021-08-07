@@ -5,13 +5,13 @@ class HumusBalanceController < ActionController::Base
     render json: HumusBalanceCalculator.call
   end
 
-  def recalculate
-    render json: HumusBalanceCalculator.call(fields_params)
+  def calculate
+    render json: HumusBalanceCalculator.call([field_params]).last
   end
 
   private
 
-  def fields_params
-    params.permit(fields: [:id, crops: [:year, crop: [:value, :humus_delta]]])[:fields]
+  def field_params
+    params.require(:field).permit(:id, crops: [:year, crop: [:value, :humus_delta]])
   end
 end

@@ -1,18 +1,18 @@
 class HumusBalanceCalculator
   CONSECUTIVE_MULTIPLIER = 1.3
 
-  def initialize(fields = nil)
+  def initialize(field = nil)
     @fields =
-      if fields.nil?
+      if field.nil?
         init_fields
       else
-        fields
+        field
       end
   end
 
   def call
     @fields.map do |field|
-      { field_id: field[:id], humus_balance: calculate_balance(field) }
+      { field_id: field[:id], humus_balance: calculate_balance(field).round(2) }
     end
   end
 
