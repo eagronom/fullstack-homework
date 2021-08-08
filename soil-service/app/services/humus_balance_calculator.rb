@@ -1,30 +1,16 @@
-class HumusBalanceCalculator
+class HumusBalanceCalculator < ApplicationService
   CONSECUTIVE_MULTIPLIER = 1.3
 
-  def initialize(field = nil)
-    @fields =
-      if field.nil?
-        init_fields
-      else
-        field
-      end
+  def initialize(field_params)
+    @field_params = field_params
   end
 
   def call
-    @fields.map do |field|
-      { field_id: field[:id], humus_balance: calculate_balance(field).round(2) }
-    end
-  end
-
-  def self.call(*args, &block)
-    new(*args, &block).call
+    field = yield HumusBalanceCalculatorContract.new.call(@field_params).to_monad
+    Success({ field_id: field[:id], humus_balance: calculate_balance(field).round(2) })
   end
 
   private
-
-  def init_fields
-    ::FieldsService.instance.fetch_fields
-  end
 
   def calculate_balance(field)
     previous_crop_value = nil

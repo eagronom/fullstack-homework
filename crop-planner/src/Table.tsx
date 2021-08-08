@@ -73,11 +73,9 @@ export default class Table extends PureComponent<Props, State> {
       this.setState(newFieldsState)
       const changedField = find(newFieldsState.fields, field => field.id === fieldId)!
 
-      let newBalance = calculateHumusBalance(changedField)
-      newBalance.then((humusBalance) => {
+      calculateHumusBalance(changedField).then((humusBalance) => {
           this.setState(buildNewHumusState(this.state.humusBalance, humusBalance))
       })
-
 
       return null
   }
