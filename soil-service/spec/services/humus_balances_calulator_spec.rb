@@ -54,7 +54,6 @@ RSpec.describe HumusBalancesCalculator do
       end
 
       it 'returns error message' do
-        pp call.failure.errors(full: true).to_h
         expect(call.failure.errors(full: true).to_h).to match({ crops: { 0 => { crop: { value: ["value must be an integer"] } } } })
       end
     end
