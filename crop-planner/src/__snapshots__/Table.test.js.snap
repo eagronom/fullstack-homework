@@ -180,7 +180,7 @@ exports[`<Table /> loads data when component mounted 1`] = `
     <div
       className="table__cell table__cell--right"
     >
-      --
+      Not Calculated
     </div>
   </div>
 </div>
