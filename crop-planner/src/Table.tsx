@@ -2,15 +2,17 @@ import { PureComponent } from 'react'
 import { sortBy } from 'lodash'
 
 import CropSelect from './CropSelect'
-import { Crop, Field, SeasonalCrop } from './types'
-import { fetchCrops, fetchFields } from './api'
+import HumusBalanceCell from './HumusBalanceCell'
+import { Crop, Field, SeasonalCrop, HumusBalance } from './types'
+import { fetchCrops, fetchFields, fetchHumusBalances } from './api'
 import buildNewFieldsState from './buildNewFieldsState'
 
 type Props = {}
 
 type State = {
   allCrops: Array<Crop>,
-  fields: Array<Field>
+  fields: Array<Field>,
+  humusBalances: Array<HumusBalance>
 }
 
 export default class Table extends PureComponent<Props, State> {
@@ -20,6 +22,7 @@ export default class Table extends PureComponent<Props, State> {
     this.state = {
       allCrops: [],
       fields: [],
+      humusBalances: [],
     }
   }
 
@@ -27,6 +30,7 @@ export default class Table extends PureComponent<Props, State> {
     this.setState({
       fields: await fetchFields(),
       allCrops: await fetchCrops(),
+      humusBalances: await fetchHumusBalances()
     })
 
   render = () =>
@@ -52,7 +56,9 @@ export default class Table extends PureComponent<Props, State> {
 
       {sortBy(field.crops, crop => crop.year).map(seasonalCrop => this.renderCropCell(field, seasonalCrop))}
 
-      <div className="table__cell table__cell--right">--</div>
+      <HumusBalanceCell
+        value={this.fieldHumusBalanceValue(field.id)}
+      />
     </div>
 
   renderCropCell = (field: Field, seasonalCrop: SeasonalCrop) =>
@@ -67,5 +73,17 @@ export default class Table extends PureComponent<Props, State> {
   changeFieldCrop = (newCrop: Crop | null, fieldId: number, cropYear: number) =>
     this.setState(
       buildNewFieldsState(this.state.fields, newCrop, fieldId, cropYear),
+      async () => {
+        const field = this.state.fields.find(field => field.id === fieldId);
+        if (field) await this.updateFieldHumusBalance()
+      }
     )
+
+  fieldHumusBalanceValue = (fieldId: number) => this.state.humusBalances.find(item => item.id === fieldId )!.value
+
+  updateFieldHumusBalance = async () => {    
+    this.setState({
+      humusBalances: await fetchHumusBalances(this.state.fields)
+    })
+  }
 }

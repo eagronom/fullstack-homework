@@ -44,6 +44,14 @@
   &:last-child {
     border-right: none;
   }
+
+  &.increased-field-quality {
+    color: green;
+  }
+
+  &.decreased-field-quality {
+    color: red;
+  }
 }
 
 .table__cell--center {
